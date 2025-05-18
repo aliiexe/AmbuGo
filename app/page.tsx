@@ -1,6 +1,5 @@
 import { redirect } from 'next/navigation'
 import { auth } from '@clerk/nextjs/server'
-import Image from 'next/image'
 import Link from 'next/link'
 
 export default async function Home() {
@@ -33,11 +32,11 @@ export default async function Home() {
       <div className="container mx-auto px-6 py-12 md:flex md:items-center md:justify-between">
         <div className="md:w-1/2 mb-10 md:mb-0">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-            La solution d'urgence médicale nouvelle génération
+            La solution d&apos;urgence médicale nouvelle génération
           </h1>
           <p className="text-lg text-gray-600 mb-8">
             Ambu-Go connecte les ambulances avec les hôpitaux en temps réel pour une coordination optimale 
-            des soins d'urgence et un transport rapide des patients.
+            des soins d&apos;urgence et un transport rapide des patients.
           </p>
           <div className="flex flex-wrap gap-3">
             <Link href="/sign-up" className="px-6 py-3 bg-blue-600 text-white rounded-md text-lg hover:bg-blue-700">
@@ -87,7 +86,7 @@ export default async function Home() {
             <div className="text-blue-600 text-4xl mb-4">⚡</div>
             <h3 className="text-xl font-bold mb-2">Réponse optimisée</h3>
             <p className="text-gray-600">
-              Algorithmes d'optimisation pour réduire les temps de réponse et déterminer l'hôpital le plus adapté à chaque situation.
+              Algorithmes d&apos;optimisation pour réduire les temps de réponse et déterminer l&apos;hôpital le plus adapté à chaque situation.
             </p>
           </div>
         </div>
@@ -105,17 +104,17 @@ export default async function Home() {
                   <h3 className="text-xl font-bold">Prise en charge du patient</h3>
                 </div>
                 <p className="text-gray-600 ml-11">
-                  L'ambulancier enregistre les informations critiques du patient et sa localisation.
+                  L&apos;ambulancier enregistre les informations critiques du patient et sa localisation.
                 </p>
               </div>
               
               <div className="mb-10">
                 <div className="flex items-center mb-4">
                   <div className="bg-blue-100 text-blue-600 rounded-full w-8 h-8 flex items-center justify-center mr-3 font-bold">2</div>
-                  <h3 className="text-xl font-bold">Recherche d'hôpital</h3>
+                  <h3 className="text-xl font-bold">Recherche d&apos;hôpital</h3>
                 </div>
                 <p className="text-gray-600 ml-11">
-                  Le système identifie automatiquement l'établissement le plus adapté en fonction des besoins médicaux.
+                  Le système identifie automatiquement l&apos;établissement le plus adapté en fonction des besoins médicaux.
                 </p>
               </div>
               
@@ -125,7 +124,7 @@ export default async function Home() {
                   <h3 className="text-xl font-bold">Coordination en temps réel</h3>
                 </div>
                 <p className="text-gray-600 ml-11">
-                  L'hôpital est alerté et prépare l'accueil pendant que l'ambulance suit l'itinéraire optimal vers la destination.
+                  L&apos;hôpital est alerté et prépare l&apos;accueil pendant que l&apos;ambulance suit l&apos;itinéraire optimal vers la destination.
                 </p>
               </div>
             </div>
@@ -146,12 +145,12 @@ export default async function Home() {
       {/* CTA Section */}
       <div className="bg-blue-600 text-white py-16">
         <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold mb-6">Prêt à révolutionner les services d'urgence ?</h2>
+          <h2 className="text-3xl font-bold mb-6">Prêt à révolutionner les services d&apos;urgence ?</h2>
           <p className="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
-            Rejoignez Ambu-Go et participez à l'amélioration des soins d'urgence grâce à la technologie.
+            Rejoignez Ambu-Go et participez à l&apos;amélioration des soins d&apos;urgence grâce à la technologie.
           </p>
           <Link href="/sign-up" className="inline-block px-8 py-4 bg-white text-blue-600 rounded-md font-bold text-lg hover:bg-blue-50">
-            S'inscrire maintenant
+            S&apos;inscrire maintenant
           </Link>
         </div>
       </div>
@@ -162,12 +161,12 @@ export default async function Home() {
           <div className="flex flex-col md:flex-row justify-between">
             <div className="mb-6 md:mb-0">
               <h3 className="text-xl font-bold mb-4">Ambu-Go</h3>
-              <p className="text-gray-400">Connecter les ambulances et les hôpitaux pour des soins d'urgence optimisés.</p>
+              <p className="text-gray-400">Connecter les ambulances et les hôpitaux pour des soins d&apos;urgence optimisés.</p>
             </div>
             <div>
               <h4 className="text-lg font-semibold mb-4">Contact</h4>
               <p className="text-gray-400">info@ambu-go.com</p>
-              <p className="text-gray-400">Support d'urgence: (555) 123-4567</p>
+              <p className="text-gray-400">Support d&apos;urgence: (555) 123-4567</p>
             </div>
           </div>
           <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
