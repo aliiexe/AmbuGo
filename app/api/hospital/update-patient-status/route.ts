@@ -85,8 +85,8 @@ export async function POST(request: Request) {
     return NextResponse.json(
       { 
         error: "Failed to update patient status", 
-        details: error.message,
-        stack: error.stack 
+        details: error instanceof Error ? error.message : String(error),
+        stack: error instanceof Error ? error.stack : undefined
       },
       { status: 500 }
     );

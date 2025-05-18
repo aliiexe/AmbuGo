@@ -13,14 +13,6 @@ const icon = L.icon({
 })
 
 // Define a fallback icon in case the custom one fails
-const fallbackIcon = L.icon({
-  iconUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png",
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png",
-  shadowSize: [41, 41],
-})
 
 interface LocationMapProps {
   onLocationSelected: (location: { latitude: number; longitude: number }) => void
@@ -34,7 +26,7 @@ function MapClickHandler({
   onLocationSelected: (location: { latitude: number; longitude: number }) => void
   setMarkerPosition: (position: [number, number]) => void
 }) {
-  const map = useMapEvents({
+  useMapEvents({
     click: (e) => {
       const { lat, lng } = e.latlng
       setMarkerPosition([lat, lng])

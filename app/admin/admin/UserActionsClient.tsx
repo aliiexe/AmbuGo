@@ -10,8 +10,8 @@ interface ClientUser {
 
 type ActionResponse = {
   message: string;
-  data?: any; 
-  error?: any; 
+  data?: unknown; 
+  error?: string | null; 
 };
 
 interface UserActionsClientProps {
@@ -33,8 +33,12 @@ export default function UserActionsClient({ user, setRole, removeRole }: UserAct
       } else {
         toast.success(successMessageOverride || res.message || 'Rôle mis à jour avec succès !');
       }
-    } catch (error: any) {
-      toast.error(error?.message || 'Une erreur inattendue est survenue.');
+    } catch (error: unknown) {
+      const errorMessage =
+        error && typeof error === 'object' && 'message' in error
+          ? String((error as { message?: unknown }).message)
+          : 'Une erreur inattendue est survenue.';
+      toast.error(errorMessage);
     }
   };
 

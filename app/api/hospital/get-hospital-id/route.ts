@@ -35,8 +35,14 @@ export async function GET(request: Request) {
     return NextResponse.json({ hospitalId });
   } catch (error) {
     console.error("Error getting hospital ID:", error);
+    let details = undefined;
+    let stack = undefined;
+    if (error instanceof Error) {
+      details = error.message;
+      stack = error.stack;
+    }
     return NextResponse.json(
-      { error: "Failed to retrieve hospital ID", details: error.message, stack: error.stack },
+      { error: "Failed to retrieve hospital ID", details, stack },
       { status: 500 }
     );
   }

@@ -26,7 +26,10 @@ export async function GET(request: Request) {
     } catch (dbError) {
       console.error("Database connection error:", dbError);
       return NextResponse.json(
-        { error: "Database connection failed", details: dbError.message },
+        { 
+          error: "Database connection failed", 
+          details: dbError instanceof Error ? dbError.message : String(dbError) 
+        },
         { status: 500 }
       );
     }
@@ -65,8 +68,8 @@ export async function GET(request: Request) {
     return NextResponse.json(
       { 
         error: "Failed to fetch patients", 
-        details: error.message,
-        stack: error.stack 
+        details: error instanceof Error ? error.message : String(error),
+        stack: error instanceof Error ? error.stack : undefined
       },
       { status: 500 }
     );

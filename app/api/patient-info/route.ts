@@ -79,11 +79,19 @@ export async function POST(request: Request) {
       message: "Patient information saved successfully",
       patientId
     });
-  } catch (error: any) {
-    console.error("Error saving patient data:", error);
-    return NextResponse.json(
-      { error: "Failed to save patient information", details: error.message },
-      { status: 500 }
-    );
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error("Error saving patient data:", error);
+      return NextResponse.json(
+        { error: "Failed to save patient information", details: error.message },
+        { status: 500 }
+      );
+    } else {
+      console.error("Error saving patient data:", error);
+      return NextResponse.json(
+        { error: "Failed to save patient information", details: String(error) },
+        { status: 500 }
+      );
+    }
   }
 }

@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation'
 import { checkRole } from '@/utils/roles'
 import { SearchUsers } from '@/components/SearchUsers'
-import { clerkClient, type User } from '@clerk/nextjs/server'
+import { clerkClient } from '@clerk/nextjs/server'
 import { removeRole, setRole } from './_actions'
 import UserActionsClient from './UserActionsClient'
 
@@ -84,7 +84,7 @@ export default async function AdminDashboard(params: {
       </div>
       
       {users.length === 0 && search && (
-        <p className="text-center py-8 text-gray-500">Aucun utilisateur trouvé pour "{search}"</p>
+        <p className="text-center py-8 text-gray-500">Aucun utilisateur trouvé pour &quot;{search}&quot;</p>
       )}
     </div>
   )

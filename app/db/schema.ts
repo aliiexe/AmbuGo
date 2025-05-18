@@ -1,6 +1,6 @@
 /// app/db/schema.ts
 
-import { pgTable, text, integer, uuid, serial, jsonb, date } from 'drizzle-orm/pg-core';
+import { pgTable, text, integer, uuid, jsonb, date } from 'drizzle-orm/pg-core';
 import { sql } from "drizzle-orm";
 
 export const ambulancesTable = pgTable('ambulances', {

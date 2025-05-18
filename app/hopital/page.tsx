@@ -29,7 +29,6 @@ export default function HospitalDashboard() {
   const router = useRouter()
   const { user, isLoaded } = useUser()
   const [selectedPatient, setSelectedPatient] = useState<string | null>(null)
-  const [activeTab, setActiveTab] = useState("incoming")
   const [patients, setPatients] = useState<Patient[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -66,9 +65,13 @@ export default function HospitalDashboard() {
         
         const data = await patientsResponse.json();
         setPatients(data.patients || []);
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.error("Error fetching patients:", err);
-        setError(err.message || "Failed to load patient data");
+        if (err instanceof Error) {
+          setError(err.message || "Failed to load patient data");
+        } else {
+          setError("Failed to load patient data");
+        }
       } finally {
         setIsLoading(false);
       }
@@ -187,8 +190,8 @@ export default function HospitalDashboard() {
                   <CardDescription>View and manage incoming and arrived patients</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Tabs defaultValue="incoming" onValueChange={setActiveTab}>
-                    <TabsList className="grid w-full grid-cols-2 mb-4">
+                  <Tabs defaultValue="incoming">
+                    <TabsList>
                       <TabsTrigger value="incoming">
                         Incoming {incomingPatients.length > 0 && `(${incomingPatients.length})`}
                       </TabsTrigger>

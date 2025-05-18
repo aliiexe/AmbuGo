@@ -5,8 +5,7 @@ import { useRouter } from "next/navigation"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ArrowLeft, ArrowRight, MapPin, Clock, AlertTriangle, Loader2 } from "lucide-react"
-import { getTrafficCondition } from "@/app/utils/traffic"
+import { ArrowLeft, ArrowRight, MapPin, Clock, Loader2 } from "lucide-react"
 
 interface HospitalDetails {
   distance: number | null
@@ -50,7 +49,6 @@ export default function HospitalList() {
   const [hospitals, setHospitals] = useState<Hospital[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-  const [patientData, setPatientData] = useState<any>(null)
 
   // Load hospitals based on patient location
   useEffect(() => {
@@ -69,7 +67,7 @@ export default function HospitalList() {
           return
         }
 
-        setPatientData(data)
+        // setPatientData(data) // Removed: no such state defined
         console.log("Patient data:", data)
 
         // Using the improved hospital-recommendations API
@@ -123,9 +121,13 @@ export default function HospitalList() {
         console.log("Processed hospitals:", processedHospitals);
         setHospitals(processedHospitals);
         setLoading(false);
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.error("Error loading hospitals:", err)
-        setError(err.message || "Failed to load hospitals")
+        setError(
+          err && typeof err === "object" && "message" in err
+            ? (err as { message?: string }).message || "Failed to load hospitals"
+            : "Failed to load hospitals"
+        )
         setLoading(false)
       }
     }
@@ -294,7 +296,7 @@ export default function HospitalList() {
 
                       {hospital.comment && (
                         <div className="mt-3 p-3 bg-blue-50 rounded-md text-sm text-slate-700 italic">
-                          "{hospital.comment}"
+                          &quot;{hospital.comment}&quot;
                         </div>
                       )}
 

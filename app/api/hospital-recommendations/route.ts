@@ -4,7 +4,7 @@ import { zodTextFormat } from "openai/helpers/zod";
 import { z } from "zod";
 import { NextResponse } from "next/server";
 import { db } from "@/app/db";
-import { hopitauxTable, medecinsTable, equipementsMedicauxTable, medicamentsTable } from "@/app/db/schema";
+import { medecinsTable, equipementsMedicauxTable, medicamentsTable } from "@/app/db/schema";
 import { eq, sql } from "drizzle-orm";
 import { getTrafficFlow, getTrafficCondition } from "@/app/utils/traffic";
 

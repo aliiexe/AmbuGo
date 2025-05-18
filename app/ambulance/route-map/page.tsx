@@ -28,7 +28,7 @@ const MapComponent = dynamic(() => import("@/components/map-component"), {
 export default function RouteMap() {
   const router = useRouter()
   const [eta, setEta] = useState("12 minutes")
-  const [distance, setDistance] = useState("3.2 km")
+  const [distance] = useState("3.2 km")
   const [ambulanceProgress, setAmbulanceProgress] = useState(0)
   const [trafficLights, setTrafficLights] = useState([
     { id: 1, position: 20, status: "red" },

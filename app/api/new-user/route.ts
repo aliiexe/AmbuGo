@@ -29,7 +29,7 @@ export async function GET(request: Request) {
     
     // user needs to register, redirect to registration page
     return NextResponse.redirect(new URL("/register", request.url));
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error processing user:", error);
     return new NextResponse("Error processing user", { status: 500 });
   }
@@ -95,8 +95,9 @@ export async function POST(request: Request) {
     }
     
     return NextResponse.json({ success: true });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error saving user data:", error);
-    return new NextResponse(error.message || "Error saving user data", { status: 500 });
+    const errorMessage = error instanceof Error ? error.message : "Error saving user data";
+    return new NextResponse(errorMessage, { status: 500 });
   }
 }

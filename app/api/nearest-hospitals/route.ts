@@ -10,7 +10,6 @@ export async function GET(request: NextRequest) {
     // Get user coordinates from query parameters
     const userLatitude = parseFloat(searchParams.get('latitude') || '');
     const userLongitude = parseFloat(searchParams.get('longitude') || '');
-    const limit = parseInt(searchParams.get('limit') || '5');
 
     // Validate coordinates
     if (isNaN(userLatitude) || isNaN(userLongitude)) {
