@@ -1,0 +1,79 @@
+INSERT INTO blocks (id) VALUES
+  (gen_random_uuid()),
+  (gen_random_uuid());
+
+INSERT INTO chambres (
+  id, numero, etage, hopital_id, capacite, lits_disponibles
+) VALUES
+  (gen_random_uuid(), '101', '1', (SELECT id FROM hopitaux WHERE nom='Moulay Youssef'),      2, 1),
+  (gen_random_uuid(), '202', '2', (SELECT id FROM hopitaux WHERE nom='Ibn Rochd'),           4, 2),
+  (gen_random_uuid(), '305', '3', (SELECT id FROM hopitaux WHERE adresse='Rue des Enfants, Casablanca'),  3, 3),
+  (gen_random_uuid(), '410', '4', (SELECT id FROM hopitaux WHERE nom='20 Aout 1953'),        2, 0);
+
+INSERT INTO equipements_medicaux (
+  id, nom, description, quantite_totale, quantite_disponible, hopital_id
+) VALUES
+  (gen_random_uuid(), 'Ventilateur',           'Respiration assistée', 10, 8, (SELECT id FROM hopitaux WHERE nom='Moulay Youssef')),
+  (gen_random_uuid(), 'Moniteur Cardiaque',    'Surveillance cardiaque', 5, 2, (SELECT id FROM hopitaux WHERE nom='Ibn Rochd')),
+  (gen_random_uuid(), 'Pèse-bébé',             'Balance pédiatrique',   3, 3, (SELECT id FROM hopitaux WHERE adresse='Rue des Enfants, Casablanca')),
+  (gen_random_uuid(), 'Défibrillateur',        'Urgence cardiaque',     4, 1, (SELECT id FROM hopitaux WHERE nom='20 Aout 1953'));
+
+INSERT INTO medecins (
+  id, nom, specialite, hopital_id, numero_contact
+) VALUES
+  (gen_random_uuid(), 'Dr. Amina El Khayari', 'Cardiologie', (SELECT id FROM hopitaux WHERE nom='Moulay Youssef'),   '0522123001'),
+  (gen_random_uuid(), 'Dr. Said Benomar',     'Chirurgie',   (SELECT id FROM hopitaux WHERE nom='Ibn Rochd'),        '0522123002'),
+  (gen_random_uuid(), 'Dr. Leila Harrak',     'Pédiatrie',   (SELECT id FROM hopitaux WHERE adresse='Rue des Enfants, Casablanca'), '0522123003'),
+  (gen_random_uuid(), 'Dr. Yassine Najib',    'Urgences',    (SELECT id FROM hopitaux WHERE nom='20 Aout 1953'),      '0522123004');
+
+INSERT INTO medicaments (
+  id, nom, description, quantite_disponible, date_expiration, hopital_id
+) VALUES
+  (gen_random_uuid(), 'Paracétamol',       'Antipyrétique',      150, '2026-01-01', (SELECT id FROM hopitaux WHERE nom='Moulay Youssef')),
+  (gen_random_uuid(), 'Amoxicilline',      'Antibiotique',       80,  '2025-12-31', (SELECT id FROM hopitaux WHERE nom='Ibn Rochd')),
+  (gen_random_uuid(), 'Ibuprofène',        'Anti-inflammatoire', 200, '2027-06-30', (SELECT id FROM hopitaux WHERE adresse='Rue des Enfants, Casablanca')),
+  (gen_random_uuid(), 'Diazépam',          'Anxiolytique',       50,  '2025-09-15', (SELECT id FROM hopitaux WHERE nom='20 Aout 1953'));
+
+INSERT INTO patients (
+  id, nom, cin, age, groupe_sanguin, numero_contact,
+  adresse, chambre_id, hopital_id, ambulance_id, dossier_medical
+) VALUES
+  (
+    gen_random_uuid(),
+    'Karim El Othmani',
+    'AA123456',
+    45,
+    'O+',
+    '0612345678',
+    'Rue de l''Hôpital 5, Casablanca',
+    (SELECT id FROM chambres WHERE numero='101'),
+    (SELECT id FROM hopitaux WHERE nom='Moulay Youssef'),
+    (SELECT id FROM ambulances WHERE numero_plaque='bob123'),
+    '{"antecedents": "hypertension", "allergies": ["pénicilline"]}'
+  ),
+  (
+    gen_random_uuid(),
+    'Fatima Idrissi',
+    'BB987654',
+    30,
+    'A-',
+    '0687654321',
+    'Boulevard Zerktouni 12, Casablanca',
+    (SELECT id FROM chambres WHERE numero='202'),
+    (SELECT id FROM hopitaux WHERE nom='Ibn Rochd'),
+    (SELECT id FROM ambulances WHERE numero_plaque='D8YFG38'),
+    '{"antecedents": "diabète", "traitements": ["metformine"]}'
+  ),
+  (
+    gen_random_uuid(),
+    'Omar Lahbabi',
+    'CC192837',
+    5,
+    'B+',
+    '0691122334',
+    'Av. des Enfants 8, Casablanca',
+    (SELECT id FROM chambres WHERE numero='305'),
+    (SELECT id FROM hopitaux WHERE adresse = 'Rue des Enfants, Casablanca'),
+    (SELECT id FROM ambulances WHERE numero_plaque='aboubakr'),
+    '{"vaccinations": ["BCG", "DTP"], "notes": "aucune complication"}'
+  );

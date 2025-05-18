@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+:root {
+  /* Base colors */
+  --background: #ffffff;
+  --foreground: #171717;
+  
+  /* Medical theme colors */
+  --primary: #d32f2f;  /* Medical red */
+  --primary-hover: #b71c1c;
+  --primary-foreground: #ffffff;
+  
+  --secondary: #e3f2fd; /* Light blue */
+  --secondary-hover: #bbdefb;
+  --secondary-foreground: #0d47a1;
+  
+  /* Additional accent colors */
+  --accent-blue: #2196f3;
+  --accent-green: #4caf50;
+  --accent-yellow: #ffeb3b;
+  --accent-orange: #ff9800;
+  
+  /* Supporting UI colors */
+  --muted: #f5f5f5;
+  --muted-foreground: #757575;
+  
+  --card: #ffffff;
+  --card-foreground: #171717;
+  
+  --border: #e0e0e0;
+  --input: #f5f5f5;
+  --ring: #2196f3;
+  
+  --destructive: #f44336;
+  --destructive-foreground: #ffffff;
+  
+  --radius: 0.5rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-green: var(--accent-green);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --primary: #ff5252;
+    --secondary: #1e3a5f;
+    --muted: #1f1f1f;
+    --muted-foreground: #a0a0a0;
+    --accent-blue: #90caf9;
+    --accent-green: #81c784;
+    --accent-yellow: #fff59d;
+    --accent-orange: #ffb74d;
+    --card: #1a1a1a;
+    --card-foreground: #ededed;
+    --border: #2c2c2c;
+    --input: #2c2c2c;
+  }
+} */
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Additional component styling */
+.card {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn-secondary {
+  background-color: var(--secondary);
+  color: var(--secondary-foreground);
+}
+
+.btn-secondary:hover {
+  background-color: var(--secondary-hover);
+}
